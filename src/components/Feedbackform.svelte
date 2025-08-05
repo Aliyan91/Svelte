@@ -1,11 +1,10 @@
 <script>
   import { v4 as uuidv4 } from "uuid";
-  import {createEventDispatcher} from 'svelte '
+
   import Card from "./Card.svelte";
   import Button from "./Button.svelte";
   import Ratingselect from "./Ratingselect.svelte";
-
-    const dispatch = createEventDispatcher();
+  import { Feedbackstore } from "../store";
 
   let text = "";
   let rating = 10;
@@ -32,8 +31,10 @@
         text,
         rating: +rating,
       };
-      dispatch('add-feedback', newFeedback)
-      
+      Feedbackstore.update((currentFeedback) => {
+        return [newFeedback, ...currentFeedback];
+      });
+      text = "";
     }
   };
 </script>
@@ -89,6 +90,4 @@
   input:focus {
     outline: none;
   }
-
-  
 </style>
