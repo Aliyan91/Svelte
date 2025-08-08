@@ -4,7 +4,14 @@
   import FeedbackStats from "./components/FeedbackStats.svelte";
   import Feedbackform from "./components/Feedbackform.svelte";
   import { onDestroy, onMount } from "svelte";
+  import SeacrhBar from "./components/SearchBar.svelte";
+
   let feedback = [];
+
+  let filterRatings="";
+  const handleFilter = (e) => {
+    filterRatings = e.detail; 
+  };
 
   const unsubscribe = Feedbackstore.subscribe((data) => (feedback = data));
 
@@ -28,9 +35,10 @@
 </script>
 
 <main class="container">
+  <SeacrhBar on:filter={handleFilter}></SeacrhBar>
   <Feedbackform on:add-feedback={addFeedback}></Feedbackform>
   <FeedbackStats {count} {average} />
-  <Feedbackliist />
+  <Feedbackliist {filterRatings} />
 </main>
 
 <style>

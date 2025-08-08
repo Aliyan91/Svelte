@@ -35,6 +35,7 @@
         return [newFeedback, ...currentFeedback];
       });
       text = "";
+      message = '';
     }
   };
 </script>
@@ -50,6 +51,7 @@
         on:input={handleinput}
         type="text"
         bind:value={text}
+        required
         placeholder="Tell us something that keeps you coming back"
       />
       <Button disabled={btnDisabled} type="submit">Send</Button>
