@@ -6,7 +6,7 @@
   import { onDestroy, onMount } from "svelte";
   import SeacrhBar from "./components/SearchBar.svelte";
 
-  let feedback = [];
+  let eedback = [];
 
   let filterRatings="";
   const handleFilter = (e) => {
